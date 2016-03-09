@@ -15,8 +15,11 @@ public class GameTrackerController {
     GameRepository games;
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String home(Model model, String genre, Integer releaseYear){
-        if(genre != null && releaseYear != null) {
+    public String home(Model model, String genre, Integer releaseYear, String platform){
+        if(platform != null){
+            model.addAttribute("games", games.findByAprroximatePlatform(platform));
+        }
+        else if(genre != null && releaseYear != null) {
             model.addAttribute("games", games.findByGenreAndReleaseYear(genre, releaseYear));
         }
         else if (genre != null){
