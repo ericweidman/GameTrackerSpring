@@ -1,5 +1,13 @@
 <html>
 <body>
+<a href="/">All</a>
+<a href="/?genre=Adventure">Adventure</a>
+<a href="/?genre=RTS">RTS</a>
+<a href="/?genre=RPG">RPG</a>
+<a href="/?genre=FPS">FPS</a>
+
+<br><br>
+
 <form action="/add-game" method="post">
     <input type="text" placeholder="Game name" name="gameName"/>
     <select name="gameGenre">
@@ -14,7 +22,7 @@
         <option value="PC">PC</option>
         <option value="Xbox">Xbox</option>
         <option value="PS4">PS4</option>
-        <optionvalue="Wii U">Wii U</option>
+        <option value="Wii U">Wii U</option>
     <input type="number" placeholder="Release Year" name="gameYear"/>
     <button type="submit">Add Game</button>
 </form>

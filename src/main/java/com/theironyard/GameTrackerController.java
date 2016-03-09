@@ -15,8 +15,13 @@ public class GameTrackerController {
     GameRepository games;
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String home(Model model){
-        model.addAttribute("games", games.findAll());
+    public String home(Model model, String genre){
+        if(genre == null) {
+            model.addAttribute("games", games.findAll());
+        }
+        else{
+            model.addAttribute("games", games.findByGenre(genre));
+        }
         return "home";
     }
     @RequestMapping(path = "/add-game", method = RequestMethod.POST)
