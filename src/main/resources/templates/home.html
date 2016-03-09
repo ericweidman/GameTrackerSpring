@@ -7,7 +7,11 @@
 </form>
 {{/user}}
 {{#user}}
-Welcome, {{name}}!<br><br>
+Welcome, {{name}}!
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<br><br>
 
 <a href="/">All</a>
 <a href="/?genre=Adventure">Adventure</a>
