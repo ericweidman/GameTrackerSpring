@@ -2,8 +2,19 @@
 <body>
 <form action="/add-game" method="post">
     <input type="text" placeholder="Game name" name="gameName"/>
-    <input type="text" placeholder="Game platform" name="gamePlatform"/>
-    <input type="text" placeholder="Game genre" name="gameGenre"/>
+    <select name="gameGenre">
+        <option selected disabled>Genre</option>
+        <option value="Adventure">Adventure</option>
+        <option value="RPG">RPG</option>
+        <option value="RTS">RTS</option>
+        <option value="FPS">FPS</option>
+    </select>
+    <select name="gamePlatform">
+        <option selected disabled>Platform</option>
+        <option value="PC">PC</option>
+        <option value="Xbox">Xbox</option>
+        <option value="PS4">PS4</option>
+        <optionvalue="Wii U">Wii U</option>
     <input type="number" placeholder="Release Year" name="gameYear"/>
     <button type="submit">Add Game</button>
 </form>
@@ -11,7 +22,7 @@
 
 <ol>
     {{#games}}
-    <li>{{name}} {{platform}} {{releaseYear}}</li>
+    <li>{{name}} {{platform}} {{releaseYear}} {{genre}}</li>
     {{/games}}
 </ol>
 </body>
