@@ -23,7 +23,7 @@ public class User {
 
     }
 
-    public String getPassowrdHash() {
+    public String getPassowrdHash(){
         return passowrdHash;
     }
 
