@@ -1,5 +1,9 @@
-package com.theironyard;
+package com.theironyard.controllers;
 
+import com.theironyard.entities.Game;
+import com.theironyard.services.GameRepository;
+import com.theironyard.entities.User;
+import com.theironyard.services.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,10 +54,9 @@ public class GameTrackerController {
     }
     @RequestMapping(path = "/add-game", method = RequestMethod.POST)
     public String addGame(HttpSession session, String gameName, String gamePlatform, String gameGenre, int gameYear){
-        Game game = new Game(gameName, gamePlatform, gameGenre, gameYear);
         String userName= (String) session.getAttribute("userName");
         User user = users.findFirstByName(userName);
-        game.user = user;
+        Game game = new Game(gameName, gamePlatform, gameGenre, gameYear, user);
         games.save(game);
         return "redirect:/";
     }
