@@ -1,10 +1,13 @@
 package com.theironyard.controllers;
 
+import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
 import com.theironyard.entities.Game;
 import com.theironyard.services.GameRepository;
 import com.theironyard.entities.User;
 import com.theironyard.services.UserRepository;
+import com.theironyard.utlis.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ejb.access.EjbAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,11 +65,14 @@ public class GameTrackerController {
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String login(HttpSession session, String userName){
+    public String login(HttpSession session, String userName, String password) throws Exception {
         User user = users.findFirstByName(userName);
         if (user == null){
-            user = new User(userName);
+            user = new User(userName, PasswordStorage.createHash(password));
             users.save(user);
+        }
+        else if(!PasswordStorage.verifyPassword(password, user.getPassowrdHash())){
+            throw new Exception("Incorrect password");
         }
         session.setAttribute("userName", userName);
         return "redirect:/";

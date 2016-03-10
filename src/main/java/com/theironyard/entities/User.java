@@ -15,12 +15,22 @@ public class User {
     @Column(nullable = false, unique = true)
     String name;
 
+    @Column(nullable = false)
+    String passowrdHash;
+
+
     public User() {
 
     }
 
-    public User(String name) {
+    public String getPassowrdHash() {
+        return passowrdHash;
+    }
+
+    public User(String name, String passwordHash) {
         this.name = name;
+        this.passowrdHash = passwordHash;
+
 
 
     }
