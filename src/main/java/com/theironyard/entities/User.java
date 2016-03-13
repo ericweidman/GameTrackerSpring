@@ -16,7 +16,7 @@ public class User {
     String name;
 
     @Column(nullable = false)
-    String passowrdHash;
+    String passwordHash;
 
 
     public User() {
@@ -24,12 +24,12 @@ public class User {
     }
 
     public String getPassowrdHash(){
-        return passowrdHash;
+        return passwordHash;
     }
 
     public User(String name, String passwordHash) {
         this.name = name;
-        this.passowrdHash = passwordHash;
+        this.passwordHash = passwordHash;
 
 
 

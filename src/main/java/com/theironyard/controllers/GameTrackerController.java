@@ -65,7 +65,7 @@ public class GameTrackerController {
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String login(HttpSession session, String userName, String password) throws Exception {
         User user = users.findFirstByName(userName);
-        if (user == null){
+        if (user == null) {
             user = new User(userName, PasswordStorage.createHash(password));
             users.save(user);
         }
